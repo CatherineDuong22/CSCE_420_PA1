@@ -114,7 +114,7 @@ def heuristic1(state, problem=None):
         
         # YOUR CODE HERE (set value of optimisitic_number_of_steps_to_goal)
         
-        optimisitic_number_of_steps_to_goal = 0
+        optimisitic_number_of_steps_to_goal = abs(goal_x - pacman_x) + abs(goal_y - pacman_y)
         return optimisitic_number_of_steps_to_goal
     # 
     # traveling-salesman problem (collect multiple food pellets)
@@ -126,7 +126,7 @@ def heuristic1(state, problem=None):
         
         # YOUR CODE HERE (set value of optimisitic_number_of_steps_to_goal)
         
-        optimisitic_number_of_steps_to_goal = 0
+        optimisitic_number_of_steps_to_goal = abs(goal_x - pacman_x) + abs(goal_y-pacman_y)
         return optimisitic_number_of_steps_to_goal
 
 class Node():
@@ -135,7 +135,7 @@ class Node():
     action = None
     parent_node = None
     
-    def __innit__(self, cost, state, action, parent_node):
+    def __init__(self, cost, state, action, parent_node):
         self.cost = cost
         self.state = state
         self.action = action
@@ -166,7 +166,7 @@ def a_star_search(problem, heuristic=null_heuristic):
             path = []
             trace_node = parent_node
             while trace_node.parent_node is not None:
-                path = trace_node.action + path
+                path.push_front(trace_node.action)
                 trace_node = trace_node.parent_node
             return path
         successors = problem.get_successors(current_state) 
@@ -174,7 +174,7 @@ def a_star_search(problem, heuristic=null_heuristic):
             if(successor.state not in visited):  # any state has been visited doesn't need to be visited again
                 visited.add(successor.state)
 
-                new_cost = parent_node.cost + successor.cost
+                new_cost = parent_node.cost + successor.cost + heuristic1(successor.state,problem=problem)
                 # will add heuristic here
 
                 tree.put(Node(new_cost, successor.state, successor.action, parent_node))
