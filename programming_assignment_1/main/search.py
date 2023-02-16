@@ -61,7 +61,7 @@ def depth_first_search(problem):
 def breadth_first_search(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-
+    util.raise_not_defined()
     from util import Queue
     from game import Directions
 
@@ -114,7 +114,7 @@ def heuristic1(state, problem=None):
         
         # YOUR CODE HERE (set value of optimisitic_number_of_steps_to_goal)
         
-        optimisitic_number_of_steps_to_goal = abs(goal_x - pacman_x) + abs(goal_y - pacman_y)
+        optimisitic_number_of_steps_to_goal = abs(goal_x-pacman_x) + abs(goal_y-pacman_y)
         return optimisitic_number_of_steps_to_goal
     # 
     # traveling-salesman problem (collect multiple food pellets)
@@ -126,60 +126,64 @@ def heuristic1(state, problem=None):
         
         # YOUR CODE HERE (set value of optimisitic_number_of_steps_to_goal)
         
-        optimisitic_number_of_steps_to_goal = abs(goal_x - pacman_x) + abs(goal_y-pacman_y)
+        optimisitic_number_of_steps_to_goal = 0
         return optimisitic_number_of_steps_to_goal
 
 class Node():
     cost = 0
+    total_cost = 0
     state = None
     action = None
     parent_node = None
-    
-    def __init__(self, cost, state, action, parent_node):
+
+    def __init__(self, cost, total_cost, state, action, parent_node):
         self.cost = cost
+        self.total_cost = total_cost
         self.state = state
         self.action = action
         self.parent_node = parent_node
 
     def __lt__(self, other):
-        return self.cost < other.cost
-
+        return self.total_cost < other.total_cost
 
 
 def a_star_search(problem, heuristic=null_heuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
-    "*** YOUR CODE HERE ***"
+    "* YOUR CODE HERE *"
     from queue import PriorityQueue
     from game import Directions
 
     # the component of tree is (state, the path to the state)
     tree = PriorityQueue()
-    
-    tree.put(Node(0, problem.get_start_state(), None, None)) #set path of the state to empty
+
+    tree.put(Node(0, 0, problem.get_start_state(), None, None))  # set path of the state to empty
 
     # store the visited state
-    visited = set() #set the visited state to empty
-    while(not tree.empty()): #while the tree still has path/grid to visit
-        parent_node = tree.get() 
+    visited = set()  # set the visited state to empty
+    visited.add(problem.get_start_state())
+    while (not tree.empty()):  # while the tree still has path/grid to visit
+        parent_node = tree.get()
         current_state = parent_node.state
-        if(problem.is_goal_state(current_state)): 
+        #if (current_state.state in visited):
+            #continue
+        #visited.add(successor.state)
+        if (problem.is_goal_state(current_state)):
             path = []
             trace_node = parent_node
             while trace_node.parent_node is not None:
-                path.insert(0,trace_node.action)
+                path.insert(0, trace_node.action)
                 trace_node = trace_node.parent_node
             return path
-        successors = problem.get_successors(current_state) 
+        
+        successors = problem.get_successors(current_state)
         for successor in successors:
-            if(successor.state not in visited):  # any state has been visited doesn't need to be visited again
+            if (successor.state not in visited):  # any state has been visited doesn't need to be visited again
                 visited.add(successor.state)
+                new_cost = parent_node.cost + successor.cost
+                new_total_cost = parent_node.cost + successor.cost + heuristic(successor.state, problem)
+                tree.put(Node(new_cost, new_total_cost, successor.state, successor.action, parent_node))
+    return path
 
-                new_cost = parent_node.cost + successor.cost + heuristic1(successor.state,problem=problem)
-                # will add heuristic here
-
-                tree.put(Node(new_cost, successor.state, successor.action, parent_node))
-
-    return path 
     # What does this function need to return?
     #     list of actions that reaches the goal
     # 

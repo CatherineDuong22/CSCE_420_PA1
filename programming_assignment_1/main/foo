@@ -1,0 +1,163 @@
+Starting on 2-16 at 16:54:22
+
+Question q1
+===========
+
+*** PASS: a_star_test_cases/q1/graph_backtrack.test
+*** 	solution:		['1:A->C', '0:C->G']
+*** 	expanded_states:	['A', 'B', 'C', 'D']
+*** PASS: a_star_test_cases/q1/graph_bfs_vs_dfs.test
+*** 	solution:		['1:A->G']
+*** 	expanded_states:	['A', 'B']
+*** PASS: a_star_test_cases/q1/graph_infinite.test
+*** 	solution:		['0:A->B', '1:B->C', '1:C->G']
+*** 	expanded_states:	['A', 'B', 'C']
+*** FAIL: a_star_test_cases/q1/graph_manypaths.test
+*** 	graph:
+*** 	        B1          E1
+*** 	       ^  \        ^  \
+*** 	      /    V      /    V
+*** 	    *A --> C --> D --> F --> [G]
+*** 	      \    ^      \    ^
+*** 	       V  /        V  /
+*** 	        B2          E2
+*** 	    
+*** 	    A is the start state, G is the goal.  Arrows mark 
+*** 	    possible state transitions.  This graph has multiple
+*** 	    paths to the goal, where nodes with the same state 
+*** 	    are added to the fringe multiple times before they
+*** 	    are expanded.
+*** 	student solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	student expanded_states:	['A', 'B1', 'C', 'B2', 'C', 'D', 'D', 'E1', 'E1', 'F', 'F', 'E2', 'E2', 'F', 'F']
+*** 
+*** 	correct solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	correct expanded_states:	['A', 'B1', 'C', 'B2', 'D', 'E1', 'F', 'E2']
+*** 	correct rev_solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	correct rev_expanded_states:	['A', 'B2', 'C', 'B1', 'D', 'E2', 'F', 'E1']
+*** FAIL: a_star_test_cases/q1/pacman_1.test
+*** Too many node expanded; are you expanding nodes twice?
+*** 	student nodes expanded: 276
+*** 
+*** 	correct nodes expanded: 269 (leeway_factor 1.0)
+*** Tests failed.
+
+### Question q1: 0/3 ###
+
+
+Question q2
+===========
+
+*** PASS: a_star_test_cases/q2/graph_backtrack.test
+*** 	solution:		['1:A->C', '0:C->G']
+*** 	expanded_states:	['A', 'B', 'C', 'D']
+*** PASS: a_star_test_cases/q2/graph_bfs_vs_dfs.test
+*** 	solution:		['1:A->G']
+*** 	expanded_states:	['A', 'B']
+*** PASS: a_star_test_cases/q2/graph_infinite.test
+*** 	solution:		['0:A->B', '1:B->C', '1:C->G']
+*** 	expanded_states:	['A', 'B', 'C']
+*** FAIL: a_star_test_cases/q2/graph_manypaths.test
+*** 	graph:
+*** 	        B1          E1
+*** 	       ^  \        ^  \
+*** 	      /    V      /    V
+*** 	    *A --> C --> D --> F --> [G]
+*** 	      \    ^      \    ^
+*** 	       V  /        V  /
+*** 	        B2          E2
+*** 	    
+*** 	    A is the start state, G is the goal.  Arrows mark 
+*** 	    possible state transitions.  This graph has multiple
+*** 	    paths to the goal, where nodes with the same state 
+*** 	    are added to the fringe multiple times before they
+*** 	    are expanded.
+*** 	student solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	student expanded_states:	['A', 'B1', 'C', 'B2', 'C', 'D', 'D', 'E1', 'E1', 'F', 'F', 'E2', 'E2', 'F', 'F']
+*** 
+*** 	correct solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	correct expanded_states:	['A', 'B1', 'C', 'B2', 'D', 'E1', 'F', 'E2']
+*** 	correct rev_solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	correct rev_expanded_states:	['A', 'B1', 'C', 'B2', 'D', 'E1', 'F', 'E2']
+*** PASS: a_star_test_cases/q2/ucs_0_graph.test
+*** 	solution:		['Right', 'Down', 'Down']
+*** 	expanded_states:	['A', 'B', 'D', 'C', 'G']
+*** PASS: a_star_test_cases/q2/ucs_1_problem_c.test
+*** 	pacman layout:		medium_maze
+*** 	solution length: 68
+*** 	nodes expanded:		276
+*** PASS: a_star_test_cases/q2/ucs_2_problem_e.test
+*** 	pacman layout:		medium_maze
+*** 	solution length: 74
+*** 	nodes expanded:		266
+*** PASS: a_star_test_cases/q2/ucs_3_problem_w.test
+*** 	pacman layout:		medium_maze
+*** 	solution length: 152
+*** 	nodes expanded:		175
+*** PASS: a_star_test_cases/q2/ucs_4_test_search.test
+*** 	pacman layout:		test_search
+*** 	solution length: 7
+*** 	nodes expanded:		14
+*** PASS: a_star_test_cases/q2/ucs_5_goal_at_dequeue.test
+*** 	solution:		['1:A->B', '0:B->C', '0:C->G']
+*** 	expanded_states:	['A', 'B', 'C']
+*** Tests failed.
+
+### Question q2: 0/3 ###
+
+
+Question q3
+===========
+
+*** PASS: a_star_test_cases/q3/astar_0.test
+*** 	solution:		['Right', 'Down', 'Down']
+*** 	expanded_states:	['A', 'B', 'D', 'C', 'G']
+*** PASS: a_star_test_cases/q3/astar_1_graph_heuristic.test
+*** 	solution:		['0', '0', '2']
+*** 	expanded_states:	['S', 'A', 'D', 'C']
+*** PASS: a_star_test_cases/q3/astar_2_manhattan.test
+*** 	pacman layout:		medium_maze
+*** 	solution length: 68
+*** 	nodes expanded:		224
+*** PASS: a_star_test_cases/q3/astar_3_goal_at_dequeue.test
+*** 	solution:		['1:A->B', '0:B->C', '0:C->G']
+*** 	expanded_states:	['A', 'B', 'C']
+*** PASS: a_star_test_cases/q3/graph_backtrack.test
+*** 	solution:		['1:A->C', '0:C->G']
+*** 	expanded_states:	['A', 'B', 'C', 'D']
+*** FAIL: a_star_test_cases/q3/graph_manypaths.test
+*** 	graph:
+*** 	        B1          E1
+*** 	       ^  \        ^  \
+*** 	      /    V      /    V
+*** 	    *A --> C --> D --> F --> [G]
+*** 	      \    ^      \    ^
+*** 	       V  /        V  /
+*** 	        B2          E2
+*** 	    
+*** 	    A is the start state, G is the goal.  Arrows mark 
+*** 	    possible state transitions.  This graph has multiple
+*** 	    paths to the goal, where nodes with the same state 
+*** 	    are added to the fringe multiple times before they
+*** 	    are expanded.
+*** 	student solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	student expanded_states:	['A', 'B1', 'C', 'B2', 'C', 'D', 'D', 'E1', 'E1', 'F', 'F', 'E2', 'E2', 'F', 'F']
+*** 
+*** 	correct solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	correct expanded_states:	['A', 'B1', 'C', 'B2', 'D', 'E1', 'F', 'E2']
+*** 	correct rev_solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	correct rev_expanded_states:	['A', 'B1', 'C', 'B2', 'D', 'E1', 'F', 'E2']
+*** Tests failed.
+
+### Question q3: 0/3 ###
+
+
+Finished at 16:54:22
+
+Provisional grades
+==================
+Question q1: 0/3
+Question q2: 0/3
+Question q3: 0/3
+------------------
+Total: 0/9
+    (Don't forget to upload your project to receive credit)
