@@ -158,7 +158,7 @@ def a_star_search(problem, heuristic=null_heuristic):
     tree.put(Node(0, problem.get_start_state(), None, None)) #set path of the state to empty
 
     # store the visited state
-    visited = {} #set the visited state to empty
+    visited = set() #set the visited state to empty
     while(not tree.empty()): #while the tree still has path/grid to visit
         parent_node = tree.get() 
         current_state = parent_node.state
@@ -166,7 +166,7 @@ def a_star_search(problem, heuristic=null_heuristic):
             path = []
             trace_node = parent_node
             while trace_node.parent_node is not None:
-                path.push_front(trace_node.action)
+                path.insert(0,trace_node.action)
                 trace_node = trace_node.parent_node
             return path
         successors = problem.get_successors(current_state) 
