@@ -35,13 +35,54 @@ def tiny_maze_search(problem):
 
 def depth_first_search(problem):
     "*** YOUR CODE HERE ***"
-    util.raise_not_defined()
+    from util import Stack
+    from game import Directions
+
+    # the component of tree is (state, the path to the state)
+    tree = Stack()
+    tree.push((problem.get_start_state(), [])) #set path of the state to empty
+
+    # store the visited state
+    visited = [] #set the visited state to empty
+    final = []
+    while(not tree.is_empty()): #while the tree still has path/grid to visit
+        (state, path) = tree.pop() 
+        if(problem.is_goal_state(state)): 
+            final = path
+            return final
+        successors = problem.get_successors(state) 
+        for successor in successors:
+            if(successor.state not in visited):  # any state has been visited doesn't need to be visited again
+                visited.append(successor.state)
+                tree.push((successor.state, path + [successor.action]))
+    return path 
 
 
 def breadth_first_search(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raise_not_defined()
+
+    from util import Queue
+    from game import Directions
+
+    # the component of tree is (state, the path to the state)
+    tree = Queue()
+    tree.push((problem.get_start_state(), [])) #set path of the state to empty
+
+    # store the visited state
+    visited = [] #set the visited state to empty
+    final = []
+    while(not tree.is_empty()): #while the tree still has path/grid to visit
+        (state, path) = tree.pop() 
+        if(problem.is_goal_state(state)): 
+            final = path
+            return final
+        successors = problem.get_successors(state) 
+        for successor in successors:
+            if(successor.state not in visited):  # any state has been visited doesn't need to be visited again
+                visited.append(successor.state)
+                tree.push((successor.state, path + [successor.action]))
+    return path 
 
 
 def uniform_cost_search(problem, heuristic=None):
@@ -88,10 +129,57 @@ def heuristic1(state, problem=None):
         optimisitic_number_of_steps_to_goal = 0
         return optimisitic_number_of_steps_to_goal
 
-def a_star_search(problem, heuristic=heuristic1):
+class Node():
+    cost = 0
+    state = None
+    action = None
+    parent_node = None
+    
+    def __innit__(self, cost, state, action, parent_node):
+        self.cost = cost
+        self.state = state
+        self.action = action
+        self.parent_node = parent_node
+
+    def __lt__(self, other):
+        return self.cost < other.cost
+
+
+
+def a_star_search(problem, heuristic=null_heuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
+    from queue import PriorityQueue
+    from game import Directions
+
+    # the component of tree is (state, the path to the state)
+    tree = PriorityQueue()
     
+    tree.put(Node(0, problem.get_start_state(), None, None)) #set path of the state to empty
+
+    # store the visited state
+    visited = {} #set the visited state to empty
+    while(not tree.empty()): #while the tree still has path/grid to visit
+        parent_node = tree.get() 
+        current_state = parent_node.state
+        if(problem.is_goal_state(current_state)): 
+            path = []
+            trace_node = parent_node
+            while trace_node.parent_node is not None:
+                path = trace_node.action + path
+                trace_node = trace_node.parent_node
+            return path
+        successors = problem.get_successors(current_state) 
+        for successor in successors:
+            if(successor.state not in visited):  # any state has been visited doesn't need to be visited again
+                visited.add(successor.state)
+
+                new_cost = parent_node.cost + successor.cost
+                # will add heuristic here
+
+                tree.put(Node(new_cost, successor.state, successor.action, parent_node))
+
+    return path 
     # What does this function need to return?
     #     list of actions that reaches the goal
     # 
@@ -113,12 +201,27 @@ def a_star_search(problem, heuristic=heuristic1):
     #     ]
     # 
     # Example:
-    #     start_state = problem.get_start_state()
-    #     transitions = problem.get_successors(start_state)
-    #     example_path = [  transitions[0].action  ]
-    #     path_cost = problem.get_cost_of_actions(example_path)
-    #     return example_path
+    """
+    start_state = problem.get_start_state()
+    example_path = []
+    current_state = start_state
+    for i in range (0,10):    
+        transitions = problem.get_successors(current_state)
+        ### calculate which transition be the best from current state
+
+
+        ### pick action i based on calculation
+        i = 0
+        example_path.append(transitions[i].action)
+        current_state = transitions[i].state
+        
+
+        ### if current_state is goal_state terminate
     
+    path_cost = problem.get_cost_of_actions(example_path)
+    
+    return example_path
+    """
     util.raise_not_defined()
 
 
