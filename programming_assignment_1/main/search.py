@@ -125,8 +125,15 @@ def heuristic1(state, problem=None):
         pacman_x, pacman_y = position
         
         # YOUR CODE HERE (set value of optimisitic_number_of_steps_to_goal)
+        min_dis = 10000
+
+        for food_position in food_grid:
+            food_x, food_y = food_position
+            min_dis = min(min_dis, abs(food_x-pacman_x) + abs(food_y-pacman_y))
+
         
-        optimisitic_number_of_steps_to_goal = 0
+        optimisitic_number_of_steps_to_goal = min_dis
+        print(optimisitic_number_of_steps_to_goal)
         return optimisitic_number_of_steps_to_goal
 
 class Node():
@@ -147,7 +154,7 @@ class Node():
         return self.total_cost < other.total_cost
 
 
-def a_star_search(problem, heuristic=null_heuristic):
+def a_star_search(problem, heuristic=heuristic1):
     """Search the node that has the lowest combined cost and heuristic first."""
     "* YOUR CODE HERE *"
     from queue import PriorityQueue
@@ -160,13 +167,15 @@ def a_star_search(problem, heuristic=null_heuristic):
 
     # store the visited state
     visited = set()  # set the visited state to empty
-    visited.add(problem.get_start_state())
+
     while (not tree.empty()):  # while the tree still has path/grid to visit
+        
         parent_node = tree.get()
+        while (parent_node.state in visited):
+            parent_node = tree.get()
         current_state = parent_node.state
-        #if (current_state.state in visited):
-            #continue
-        #visited.add(successor.state)
+        visited.add(current_state)
+        
         if (problem.is_goal_state(current_state)):
             path = []
             trace_node = parent_node
@@ -177,11 +186,9 @@ def a_star_search(problem, heuristic=null_heuristic):
         
         successors = problem.get_successors(current_state)
         for successor in successors:
-            if (successor.state not in visited):  # any state has been visited doesn't need to be visited again
-                visited.add(successor.state)
-                new_cost = parent_node.cost + successor.cost
-                new_total_cost = parent_node.cost + successor.cost + heuristic(successor.state, problem)
-                tree.put(Node(new_cost, new_total_cost, successor.state, successor.action, parent_node))
+            new_cost = parent_node.cost + successor.cost
+            new_total_cost = parent_node.cost + successor.cost + heuristic(successor.state, problem)
+            tree.put(Node(new_cost, new_total_cost, successor.state, successor.action, parent_node))
     return path
 
     # What does this function need to return?
