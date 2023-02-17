@@ -100,7 +100,7 @@ def a_really_really_bad_heuristic(position, problem):
 
 def null_heuristic(state, problem=None):
     return 0
-
+    
 def heuristic1(state, problem=None):
     from search_agents import FoodSearchProblem
     
@@ -126,15 +126,34 @@ def heuristic1(state, problem=None):
         
         # YOUR CODE HERE (set value of optimisitic_number_of_steps_to_goal)
         min_dis = 10000
+        food = food_grid.as_list() 
+        if not food:
+            return 0
+        max_dis = 0
 
+        for food in food:
+            food_x, food_y = food
+            key = position + food
+            if key in problem.heuristic_info:
+                distance = problem.heuristic_info[key]
+            else:
+                # Use manhattan distance to calculate
+                distance = abs(food_x - pacman_x) + abs(food_y - pacman_y)
+                problem.heuristic_info[key] = distance
+
+            if distance > max_dis:
+                max_dis = distance
+
+        return max_dis
+        '''
         for food_position in food_grid:
             food_x, food_y = food_position
             min_dis = min(min_dis, abs(food_x-pacman_x) + abs(food_y-pacman_y))
 
-        
         optimisitic_number_of_steps_to_goal = min_dis
         print(optimisitic_number_of_steps_to_goal)
         return optimisitic_number_of_steps_to_goal
+        '''
 
 class Node():
     cost = 0
