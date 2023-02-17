@@ -125,12 +125,69 @@ def heuristic1(state, problem=None):
         pacman_x, pacman_y = position
         
         # YOUR CODE HERE (set value of optimisitic_number_of_steps_to_goal)
-        min_dis = 10000
         food = food_grid.as_list() 
         if not food:
             return 0
         max_dis = 0
+        minimum_distance = 0
+        obstacles_to_dot = 0
+        for dot in food_grid.as_list():
+            distance = ((position[0] - dot[0]) ** 2 + (position[1] - dot[1]) ** 2 ) ** 0.5
+            
+            obstacles = 0
 
+            if dot[0] < position[0]:
+                if (position[0]-1, position[1]) in problem.walls:
+                    obstacles += 1
+            if dot[0] > position[0]:
+                if (position[0]+1, position[1]) in problem.walls:
+                    obstacles += 1
+            if dot[1] < position[1]:
+                if (position[0], position[1]-1) in problem.walls:
+                    obstacles += 1
+            if dot[1] > position[1]:
+                if (position[0], position[1]+1) in problem.walls:
+                    obstacles += 1
+            if minimum_distance == 0:
+                minimum_distance = distance
+            elif minimum_distance > distance and obstacles < obstacles_to_dot:
+                minimum_distance = distance  
+        dot_count = 0
+        for dot in food_grid.as_list():
+            dot_count += 1
+        if "food" in problem.heuristic_info:
+            if dot_count < problem.heuristic_info["food"]:
+                problem.heuristic_info["food"] = dot_count
+                problem.heuristic_info[dot_count] = 0
+            elif dot_count > problem.heuristic_info["food"]:
+                problem.heuristic_info[dot_count] += 1
+                return problem.heuristic_info[dot_count] + minimum_distance
+        else:
+            problem.heuristic_info["food"] = dot_count
+            problem.heuristic_info[dot_count] = 0
+        return minimum_distance
+    '''
+    First heuristics algo:
+        max_distance = -1
+        start = position
+        pos = 0
+        for j in range(len(food)):
+            temp_maxDistance = 0
+            for i in food:
+                maze_dist = util.manhattan_distance(start,i)
+                if maze_dist > max_distance:
+                    max_distance = maze_dist
+                    #pos = i
+                if maze_dist > temp_maxDistance:
+                    temp_maxDistance = maze_dist
+                    pos = i
+            start = pos
+            if pos in food:
+                food.remove(pos)
+
+    return max_distance
+
+    Second heuristics:
         for food in food:
             food_x, food_y = food
             key = position + food
@@ -138,22 +195,22 @@ def heuristic1(state, problem=None):
                 distance = problem.heuristic_info[key]
             else:
                 # Use manhattan distance to calculate
-                distance = abs(food_x - pacman_x) + abs(food_y - pacman_y)
+                distance = abs(food_x - pacman_x) + abs(food_y - pacman_y) -> use mahattan distance to calculate distance between two points
                 problem.heuristic_info[key] = distance
 
             if distance > max_dis:
                 max_dis = distance
 
         return max_dis
-        '''
+
         for food_position in food_grid:
             food_x, food_y = food_position
-            min_dis = min(min_dis, abs(food_x-pacman_x) + abs(food_y-pacman_y))
+            min_dis = min(min_dis, abs(food_x-pacman_x) + abs(food_y-pacman_y)) -> choose the smaller value 
 
         optimisitic_number_of_steps_to_goal = min_dis
         print(optimisitic_number_of_steps_to_goal)
         return optimisitic_number_of_steps_to_goal
-        '''
+    '''
 
 class Node():
     cost = 0
