@@ -1,0 +1,79 @@
+Welcome To Tic-Tac-Toe!
+You can turn on Alpha/Beta pruning (pruning_on), and the algorithm will run faster according to the number of nodes + evaluation time
+. . . 
+. . . 
+. . . 
+
+move X B 2
+
+. . . 
+. X . 
+. . . 
+
+ move O A 2 
+
+. O . 
+. X . 
+. . . 
+
+choose X
+move A 1 score -0.5
+move A 3 score -0.5
+move B 1 score -0.5
+move B 3 score -0.5
+move C 1 score -0.5
+move C 2 score 0
+move C 3 score -0.5
+Evaluation time: 0.0360568s
+Nodes count 7064
+X O . 
+. X . 
+. . . 
+
+choose O
+move A 3 score -0.8
+move B 1 score -0.8
+move B 3 score -0.8
+move C 1 score -0.8
+move C 2 score -0.8
+move C 3 score -0.6
+Evaluation time: 0.0060029s
+Nodes count 1061
+X O . 
+. X . 
+. . O 
+
+choose X
+move A 3 score 0
+move B 1 score -0.7
+move B 3 score 0
+move C 1 score -0.7
+move C 2 score 0
+Evaluation time: 0.0019619s
+Nodes count 238
+X O . 
+X X . 
+. . O 
+
+choose O
+move A 3 score -0.8
+move B 3 score -0.8
+move C 1 score -0.8
+move C 2 score -0.8
+Evaluation time: 0.000138s
+Nodes count 37
+X O O 
+X X . 
+. . O 
+
+choose X
+move B 3 score -0.9
+move C 1 score -0.9
+move C 2 score 0.8
+Evaluation time: 7.68e-05s
+Nodes count 7
+X O O 
+X X X 
+. . O 
+
+X is the winning player
