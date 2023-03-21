@@ -1,0 +1,143 @@
+Welcome To Tic-Tac-Toe!
+You can turn on Alpha/Beta pruning (pruning_on), and the algorithm will run faster according to the number of nodes + evaluation time
+. . . 
+. . . 
+. . . 
+
+pruning_on
+pruninng = 1
+. . . 
+. . . 
+. . . 
+
+choose X
+move A 1 score 0
+move A 2 score 0
+move A 3 score 0
+move B 1 score 0
+move B 2 score 0
+move B 3 score 0
+move C 1 score 0
+move C 2 score 0
+move C 3 score 0
+Evaluation time: 0.076618s
+Nodes count 20866
+X . . 
+. . . 
+. . . 
+
+choose O
+move A 2 score -0.3999999999999999
+move A 3 score -0.3999999999999999
+move B 1 score -0.3999999999999999
+move B 2 score 0
+move B 3 score 0
+move C 1 score -0.19999999999999996
+move C 2 score 0
+move C 3 score 0
+Evaluation time: 0.017772s
+Nodes count 2788
+X . . 
+. O . 
+. . . 
+
+choose X
+move A 2 score 0
+move A 3 score 0
+move B 1 score 0
+move B 3 score 0
+move C 1 score 0
+move C 2 score 0
+move C 3 score 0
+Evaluation time: 0.0043361s
+Nodes count 871
+X X . 
+. O . 
+. . . 
+
+choose O
+move A 3 score 0
+move B 1 score -0.8
+move B 3 score -0.8
+move C 1 score -0.8
+move C 2 score -0.8
+move C 3 score -0.8
+Evaluation time: 0.0008719s
+Nodes count 75
+X X O 
+. O . 
+. . . 
+
+choose X
+move B 1 score 0.8
+move B 3 score 0.8
+move C 1 score 0
+move C 2 score 0.6
+move C 3 score 0.6
+Evaluation time: 0.0003502s
+Nodes count 64
+X X O 
+. O . 
+X . . 
+
+choose O
+move B 1 score 0
+move B 3 score -0.8
+move C 2 score -0.8
+move C 3 score -0.8
+Evaluation time: 8.8e-05s
+Nodes count 17
+X X O 
+O O . 
+X . . 
+
+choose X
+move B 3 score 0
+move C 2 score 0.8
+move C 3 score 0.8
+Evaluation time: 0.0002329s
+Nodes count 10
+X X O 
+O O X 
+X . . 
+
+choose O
+move C 2 score 0
+move C 3 score 0
+Evaluation time: 0.0001509s
+Nodes count 5
+X X O 
+O O X 
+X O . 
+
+choose X
+move C 3 score 0
+Evaluation time: 7.8e-05s
+Nodes count 2
+X X O 
+O O X 
+X O X 
+
+It's a tie!
+
+summary of nodes searched WITHOUT alpha-beta pruning for game1:
+Nodes count 549946
+Nodes count 59705
+Nodes count 7332
+Nodes count 935
+Nodes count 198
+Nodes count 47
+Nodes count 14
+Nodes count 5
+Nodes count 2
+
+summary of nodes searched WITH alpha-beta pruning for game1:
+Nodes count: 20866
+Nodes count: 2788
+Nodes count: 871
+Nodes count: 75
+Nodes count: 64
+Nodes count: 17
+Nodes count: 10
+Nodes count: 5
+Nodes count: 2
