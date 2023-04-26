@@ -1,0 +1,51 @@
+# This is the KB file for 6queens
+# Clauses for the 6-Queens Problem
+# Variables: q1_1, Q12, Q13, Q14, Q15, Q16, Q21, Q22, Q23, Q24, Q25, Q26, Q31, Q32, Q33, Q34, Q35, Q36,
+# Q41, Q42, Q43, Q44, Q45, Q46, Q51, Q52, Q53, Q54, Q55, Q56, Q61, Q62, Q63, Q64, Q65, Q66
+c Clause 1: Each row must have at least one queen
+q1_1 Q12 Q13 Q14 Q15 Q16
+Q21 Q22 Q23 Q24 Q25 Q26
+Q31 Q32 Q33 Q34 Q35 Q36
+Q41 Q42 Q43 Q44 Q45 Q46
+Q51 Q52 Q53 Q54 Q55 Q56
+Q61 Q62 Q63 Q64 Q65 Q66
+
+c Clause 2: No two queens can be placed in the same column
+-q1_1 -Q21
+-q1_1 -Q31
+-q1_1 -Q41
+-q1_1 -Q51
+-q1_1 -Q61
+-Q12 -Q22
+-Q12 -Q32
+-Q12 -Q42
+-Q12 -Q52
+-Q12 -Q62
+-Q13 -Q23
+-Q13 -Q33
+-Q13 -Q43
+-Q13 -Q53
+-Q13 -Q63
+-Q14 -Q24
+-Q14 -Q34
+-Q14 -Q44
+-Q14 -Q54
+-Q14 -Q64
+-Q15 -Q25
+-Q15 -Q35
+-Q15 -Q45
+-Q15 -Q55
+-Q15 -Q65
+-Q16 -Q26
+-Q16 -Q36
+-Q16 -Q46
+-Q16 -Q56
+-Q16 -Q66
+
+c Clause 3: No two queens can be placed in the same diagonal
+-q1_1 -Q22
+-q1_1 -Q33
+-q1_1 -Q44
+-q1_1 -q5_
+
+# facts

@@ -1,0 +1,114 @@
+# This is the CNF for map-coloring
+# clauses (these coming from doing implication elimination on rules)
+
+# Variables: WAR, WAG, WAB, NTR, NTG, NTB, SAR, SAG, SAB, QR, QG, QB, NSWB, NSWG, NSWR, TB, TG, TR, VB, VG, VR
+# Clause 1: Each region must be colored with at least one color
+WAR WAG WAB
+NTR NTG NTB
+SAR SAG SAB
+QR QG QB
+NSWR NSWG NSWB
+TR TG TB
+VR VG VB
+
+# Clause 2: No region can be colored with more than one color
+-WAB -WAG 
+-WAB -WAR 
+-WAR -WAG
+-WAR -WAB
+-WAG -WAR
+-WAG -WAB
+-NTB -NTG
+-NTB -NTR
+-NTR -NTG
+-NTR -NTB
+-NTG -NTR
+-NTG -NTB
+-SAB -SAG
+-SAB -SAR
+-SAR -SAG
+-SAR -SAB
+-QB -QG
+-QB -QR 
+-QR -QG
+-QR -QB
+-QG -QR
+-QG -QB
+-NSWB -NSWG
+-NSWB -NSWR
+-NSWR -NSWG
+-NSWR -NSWB
+-NSWG -NSWR
+-NSWG -NSWB 
+-TB -TG
+-TB -TR
+-TR -TG
+-TR -TB 
+-TG -TR 
+-TG -TB 
+-VB -VG 
+-VB -VR 
+-VR -VG 
+-VR -VB 
+-VG -VR 
+-VG -VB
+
+# Clause 3: No two adjacent regions can have the same color
+-WAR -NTR 
+-WAR -SAR
+-WAB -NTB
+-WAB -SAB 
+-WAG -NTG
+-WAG -SAG 
+-NTR -WAR 
+-NTR -SAR 
+-NTR -QR
+-NTB -WAB 
+-NTB -SAB 
+-NTB -QB
+-NTG -WAG 
+-NTG -SAG 
+-NTG -QG  
+-SAR -WAR 
+-SAR -NTR 
+-SAR -QR 
+-SAR -NSWR 
+-SAR -VR 
+-SAB -WAB 
+-SAB -NTB 
+-SAB -QB 
+-SAB -NSWB 
+-SAB -VB 
+-SAG -WAG 
+-SAG -NTG 
+-SAG -QG 
+-SAG -NSWG 
+-SAG -VG
+-QR -NTR 
+-QR -SAR 
+-QR -NSWR
+-QB -NTB 
+-QB -SAB 
+-QB -NSWB
+-QG -NTG 
+-QG -SAG 
+-QG -NSWG
+-NSWR -QR 
+-NSWR -SAR 
+-NSWR -VR 
+-NSWB -QB 
+-NSWB -SAB 
+-NSWB -VB 
+-NSWG -QG 
+-NSWG -SAG 
+-NSWG -VG
+-VR -NSWR 
+-VR -SAR 
+-VB -NSWB 
+-VB -SAB
+-VG -NSWG 
+-VG -SAG
+
+
+# facts
+
