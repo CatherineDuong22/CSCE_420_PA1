@@ -1,0 +1,73 @@
+1. MAP-COLORING
+DPLL KB_files/mapcolor.cnf 
+just the True proposition:
+WAR NTG SAB QR NSWG TR VR
+total DPLL calls: 36
+
+DPLL KB_files/mapcolor.cnf +UCH
+just the True proposition:
+WAR NTG SAB QR NSWG TR VR
+total DPLL calls: 22
++UCH =True
+
+DPLL KB_files/mapcolor.cnf -VG
+just the True proposition:
+WAR NTG SAB QR NSWG TR VR
+total DPLL calls: 34
+
+DPLL KB_files/mapcolor.cnf -VG +UCH 
+just the True proposition:
+WAR NTB SAG QR NSWB TR VR
+total DPLL calls: 21
++UCH =True
+
+2. SAMMY SPORT SHOP 
+DPLL KB_files/sammy.cnf O1Y O2W O3Y L1W L2Y L3B 
+just the True proposition:
+O1W C1B O1Y O2W C2W O3Y C3Y L1W L2Y L2B L3W L3B
+total DPLL calls: 41
+
+DPLL KB_files/sammy.cnf O1W L2B L3B O2Y O3W L1W
+just the True proposition:
+O1W C1B O2Y C2Y O3W C3W L1W L2W L2B L3Y L3B
+total DPLL calls: 48
+
+3. N-queens
+DPLL KB_files/3queens.cnf 
+This problem is unsatisfiable
+
+DPLL KB_files/3queens.cnf +UCH
+This problem is unsatisfiable
++UCH =True
+
+DPLL KB_files/4queens.cnf 
+just the True proposition:
+Q21 Q42 Q13 Q34
+total DPLL calls: 62
+
+DPLL KB_files/4queens.cnf +UCH
+just the True proposition:
+### Q31 Q12 Q43 Q24
+total DPLL calls: 18
++UCH =True
+
+DPLL KB_files/5queens.cnf 
+just the True proposition:
+### Q11 Q32 Q53 Q24 Q45
+total DPLL calls: 49
+
+DPLL KB_files/5queens.cnf +UCH
+just the True proposition:
+### Q41 Q12 Q33 Q54 Q25
+total DPLL calls: 27
++UCH =True
+
+DPLL KB_files/6queens.cnf 
+just the True proposition:
+### Q21 Q42 Q63 Q14 Q35 Q56
+total DPLL calls: 368
+
+DPLL KB_files/6queens.cnf +UCH
+just the True proposition:
+### Q21 Q42 Q63 Q14 Q35 Q56
+total DPLL calls: 180
